@@ -1,0 +1,30 @@
+<html>
+     <head>
+         <title>API Exercise</title>
+     </head>
+     <body>
+         <button id="getauthors">Get Authors</button>
+             <div id="authors" >
+                 <div  id="Authors2"class="author">
+                   
+                 </div>
+             </div>
+             <script>
+    document.getElementById('getauthors').addEventListener('click',fetchAuthor)
+             function fetchAuthor(){
+        fetch('https://fakerestapi.azurewebsites.net/api/v1/Authors') 
+         .then(response => response.json())
+         .then(Authors=>{
+         let output=``;
+         Authors.forEach(function(Author){
+         output+=`<h3>${Author.firstName}   ${Author.lastName}`;
+         output+=`</h3> <h4> BookID {${Author.idBook}} `;
+         output+=`</h4>`;
+         });
+         document.getElementById("Authors2").innerHTML=output;
+         
+         });
+             }
+             </script>
+     </body>
+ </html>
